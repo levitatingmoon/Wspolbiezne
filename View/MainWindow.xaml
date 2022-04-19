@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel>
+        <TextBox x:Name="NumerTextBox" Width="300" Height="50" PreviewTextInput="PreviewTextInput"></TextBox>
 
-    </Grid>
+        <Button x:Name="ButtonStart" Width="100" Height="50" Click="Button_Click">Start</Button>
+        <Canvas>
+            <Rectangle Width="800" Height="300" Fill="White" Stroke="Black" Canvas.Top="20" StrokeThickness="1" />
+        </Canvas>
+    </StackPanel>
 </Window>

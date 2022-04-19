@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace View
 {
@@ -23,6 +24,23 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ButtonStart.Content == "Start")
+            {
+                ButtonStart.Content = "Restart";
+            }
+            else {
+                ButtonStart.Content = "Start";
+            }
+        }
+
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9][^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
