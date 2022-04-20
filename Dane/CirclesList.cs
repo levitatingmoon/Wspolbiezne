@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dane
 {
-    internal class CirclesList : ICircles
+    public class CirclesList : ICircles
     {
         List<Circle> circles;
 
@@ -42,6 +42,19 @@ namespace Dane
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetRadius();
+        }
+
+        public void ChangePosition(int i, int x, int y)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            circles[i].SetX(x);
+            circles[i].SetY(y);
+        }
+
+        public void RemoveAllCircles()
+        {
+            circles.Clear();
         }
     }
 }

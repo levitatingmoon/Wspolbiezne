@@ -2,7 +2,7 @@
 
 namespace Dane
 {
-    public class Circle
+    internal class Circle
     {
         private int x;
         private int y;
