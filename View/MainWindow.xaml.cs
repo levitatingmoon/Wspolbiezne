@@ -22,33 +22,29 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
-        int speed = 5;
-        DispatcherTimer MoveTimer = new DispatcherTimer();
-
 
         public MainWindow()
         {
             InitializeComponent();
 
-            MoveTimer.Tick += MoveTimerEvent;
-            MoveTimer.Interval = TimeSpan.FromMilliseconds(20);
-            MoveTimer.Start();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+
         {
-            if (ButtonStart.Content == "Start")
+            string NumberTextBoxString = NumberTextBox.Text;
+            if (NumberTextBoxString == "") {
+                NumberTextBoxString = "1";
+            }
+            if ((string)ButtonStart.Content == "Start")
             {
                 ButtonStart.Content = "Restart";
+                DrawCircles(CanvasBox, Int32.Parse(NumberTextBoxString));
             }
             else {
-                ButtonStart.Content = "Start";
+                DrawCircles(CanvasBox, Int32.Parse(NumberTextBoxString));
             }
 
-            string NumberTextBoxString = NumberTextBox.Text;
-
-            DrawCircles(CanvasBox, Int32.Parse(NumberTextBoxString));
         }
 
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -57,6 +53,7 @@ namespace View
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        //viewmodel
         public void DrawCircles(Canvas MyCanvas, int numberOfCircles)
         {
             Random rnd = new Random();
@@ -77,19 +74,5 @@ namespace View
             }
         }
 
-
-        private void MoveTimerEvent(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int x = random.Next(15, 770);
-            int y = random.Next(15, 270);
-            Canvas.SetLeft(circle, x - speed);
-            Canvas.SetTop(circle, y - speed);
-
-            if (Canvas.GetLeft(circle) == x && Canvas.GetTop(circle) == y)
-            {
-                MoveTimerEvent(sender,e);
-            }
-        }
     }
 }

@@ -12,5 +12,8 @@ namespace Logika
         void StopMoving();
         int GetX(int i);
         int GetY(int i);
+        int GetWidth();
+        int GetHeight();
+        int Count();
     }
 }

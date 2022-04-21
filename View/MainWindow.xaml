@@ -10,7 +10,6 @@
         <TextBox x:Name="NumberTextBox" Width="300" Height="50" PreviewTextInput="PreviewTextInput"></TextBox>
         <Button x:Name="ButtonStart" Width="100" Height="50" Click="Button_Click" Content="Start"/>
         <Canvas x:Name="CanvasBox" Width="800" Height="300" Background="LightGray">
-            <Ellipse Name ="circle" Width="30" Height="30" Fill="Black" Canvas.Left="30" Canvas.Top="30"></Ellipse>
         </Canvas>
     </StackPanel>
 </Window>

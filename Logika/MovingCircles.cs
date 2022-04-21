@@ -8,11 +8,16 @@ namespace Logika
     {
         Dane.ICircles circles;
         int radius = 10;
-        int width = 200;
-        int height = 100;
+        int width = 600;
+        int height = 200;
         int sleepTime = 200;
         int maxDelta = 5;
         bool moving = false;
+
+        public int Count()
+        {
+            return circles.Count();
+        }
 
         public void CreateCircles(int n)
         {
@@ -22,6 +27,16 @@ namespace Logika
             {
                 circles.AddCircle(rnd.Next(-width, width), rnd.Next(-height, height), radius);
             }
+        }
+
+        public int GetHeight()
+        {
+            return height;
+        }
+
+        public int GetWidth()
+        {
+            return width;
         }
 
         public int GetX(int i)
