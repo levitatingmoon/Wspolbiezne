@@ -10,11 +10,15 @@ namespace Model
         int width = 600;
         int height = 200;
         
-        public void Restart(int n) {
-            movingCircles.StopMoving();
-            movingCircles.RemoveCircles();
+        public void Start(int n) {
             movingCircles.CreateCircles(n);
             movingCircles.StartMoving();
+        }
+
+        public void Stop()
+        {
+            movingCircles.StopMoving();
+            movingCircles.RemoveCircles();
         }
 
         public List<int> GetX()

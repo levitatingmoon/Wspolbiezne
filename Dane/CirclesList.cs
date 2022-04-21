@@ -6,7 +6,7 @@ namespace Dane
 {
     public class CirclesList : ICircles
     {
-        List<Circle> circles;
+        List<Circle> circles = new List<Circle>();
 
         public void AddCircle(int x, int y, int radius)
         {
