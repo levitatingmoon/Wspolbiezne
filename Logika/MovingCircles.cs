@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Threading;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace Logika
 {
     public class MovingCircles : IMovingCircles
     {
-        Dane.ICircles circles;
-        int radius = 10;
-        int width = 600;
-        int height = 200;
-        int sleepTime = 200;
-        int maxDelta = 5;
+        Dane.ICircles circles = new Dane.CirclesList();
+        List<Thread> threads = new List<Thread>();
+        int radius = 20;
+        int width = 800;
+        int height = 300;
+        int sleepTime = 50;
+        int minVelocity = 5;
+        int maxVelocity = 20;
         bool moving = false;
 
         public int Count()
@@ -22,10 +25,12 @@ namespace Logika
         public void CreateCircles(int n)
         {
             Random rnd = new Random();
-            circles = new Dane.CirclesList();
             for (int i = 0; i < n; i++)
             {
-                circles.AddCircle(rnd.Next(-width, width), rnd.Next(-height, height), radius);
+                circles.AddCircle(rnd.Next(radius, width - radius),
+                rnd.Next(radius, height - radius), radius,
+                rnd.Next(minVelocity, maxVelocity), 
+                rnd.Next(minVelocity, maxVelocity));
             }
         }
 
@@ -56,10 +61,13 @@ namespace Logika
 
         public void StartMoving()
         {
+            
             moving = true;
             for (int i=0; i<circles.Count(); i++)
             {
-                Thread t = new Thread(() => MoveCircle(i));
+                int tmp = i;
+                Thread t = new Thread(() => MoveCircle(tmp));
+                threads.Add(t);
                 t.Start();
             }
         }
@@ -67,29 +75,26 @@ namespace Logika
         public void StopMoving()
         {
             moving = false;
+            threads.Clear();
         }
 
         private void MoveCircle(int i)
         {
-            Random rnd = new Random();
-            int newPosx = GetX(i);
-            int newPosy = GetY(i);
-            int x, y, newx, newy;
             while (true)
             {
-                if (Math.Abs(newPosx - GetX(i)) < maxDelta && Math.Abs(newPosy - GetY(i)) < maxDelta)
+                int newPosx = circles.GetX(i) + circles.GetVx(i);
+                int newPosy = circles.GetY(i) + circles.GetVy(i);
+                if ( newPosx < radius || newPosx > width - radius)
                 {
-                    newPosx = rnd.Next(0, width);
-                    newPosy = rnd.Next(0, height);
+                    circles.SetVx(i, -circles.GetVx(i));
                 }
+                if (newPosy < radius || newPosy > height - radius)
+                {
+                    circles.SetVy(i, -circles.GetVy(i));
+                }
+                circles.ChangePosition(i, circles.GetX(i) + circles.GetVx(i), circles.GetY(i) + circles.GetVy(i));
                 Thread.Sleep(sleepTime);
-                x = newPosx - GetX(i);
-                y = newPosy - GetY(i);
-                float length = (float)Math.Sqrt(x * x + y * y);
-                newx = (int)(GetX(i) + x / length * maxDelta);
-                newy = (int)(GetY(i) + y / length * maxDelta);
-                circles.ChangePosition(i, newx, newy);
-                if (!moving) 
+                if (!moving)
                     break;
             }
         }

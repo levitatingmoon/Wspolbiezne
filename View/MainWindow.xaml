@@ -10,19 +10,21 @@
     <Window.Resources>
         <vm:AppWindow x:Key="viewModel"/>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel DataContext="{Binding Source={StaticResource viewModel}}">
         <!--<TextBox x:Name="NumberTextBox" Width="300" Height="50" PreviewTextInput="PreviewTextInput"></TextBox>-->
         <Button x:Name="ButtonStart" Width="100" Height="50" Command="{Binding Path=startCommand, Source={StaticResource viewModel}}" Content="Start"/>
         <Canvas x:Name="CanvasBox" Width="800" Height="300" Background="LightGray">
             <ItemsControl ItemsSource="{Binding Path=circleDrawings, Source={StaticResource viewModel}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Ellipse
-                        Fill="Blue"
-                        Height="{Binding diameter}"
-                        Width="{Binding diameter}"
-                        Canvas.Left="{Binding x}"
-                        Canvas.Top="{Binding y}"/>
+                        <Canvas>
+                            <Ellipse
+                            Fill="Blue"
+                            Height="{Binding diameter}"
+                            Width="{Binding diameter}"
+                            Canvas.Left="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Canvas.Top="{Binding Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

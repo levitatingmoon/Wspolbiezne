@@ -7,10 +7,11 @@ namespace Model
     public class DrawingData
     {
         Logika.IMovingCircles movingCircles = new Logika.MovingCircles();
-        int width = 600;
-        int height = 200;
+        int width = 800;
+        int height = 300;
         
         public void Start(int n) {
+            movingCircles.RemoveCircles();
             movingCircles.CreateCircles(n);
             movingCircles.StartMoving();
         }

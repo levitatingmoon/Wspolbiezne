@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Threading;
 
 namespace ViewModel
@@ -10,8 +12,8 @@ namespace ViewModel
         public StartCommand startCommand { get; set; }
         Model.DrawingData drawingData = new Model.DrawingData();
         public ObservableCollection<CircleDrawing> circleDrawings { get; set; }
-        int n = 5;
-        int sleepTime = 100;
+        int n = 3;
+        int sleepTime = 30;
         bool moving = false;
         int radius = 20;
 

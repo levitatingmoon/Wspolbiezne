@@ -13,7 +13,7 @@ namespace ViewModel
             get { return _x; }
             set
             {
-                _x = value;
+                _x = value - diameter/2;
                 OnPropertyChanged("X");
             }
         }
@@ -22,16 +22,18 @@ namespace ViewModel
             get { return _y; }
             set
             {
-                _y = value;
+                _y = value - diameter/2;
                 OnPropertyChanged("Y");
             }
         }
+        //public int x { get; set; }
+        //public int y { get; set; }
         public int diameter { get; set; }
 
         public CircleDrawing(int x, int y, int radius)
         {
-            this._x = x - radius;
-            this._y = y - radius;
+            this.X = x - radius;
+            this.Y = y - radius;
             diameter = radius * 2;
         }
 
@@ -40,7 +42,10 @@ namespace ViewModel
         {
             var handler = PropertyChanged;
 
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

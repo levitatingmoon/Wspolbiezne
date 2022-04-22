@@ -8,9 +8,9 @@ namespace Dane
     {
         List<Circle> circles = new List<Circle>();
 
-        public void AddCircle(int x, int y, int radius)
+        public void AddCircle(int x, int y, int radius, int vx, int vy)
         {
-            circles.Add(new Circle(x, y, radius));
+            circles.Add(new Circle(x, y, radius, vx, vy));
         }
 
         public void RemoveCircle(int i)
@@ -55,6 +55,34 @@ namespace Dane
         public void RemoveAllCircles()
         {
             circles.Clear();
+        }
+
+        public int GetVx(int i)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            return circles[i].GetVx();
+        }
+
+        public int GetVy(int i)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            return circles[i].GetVy();
+        }
+
+        public void SetVx(int i, int vx)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            circles[i].SetVx(vx);
+        }
+
+        public void SetVy(int i, int vy)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            circles[i].SetVy(vy);
         }
     }
 }
