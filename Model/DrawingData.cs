@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logika;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,12 +7,16 @@ namespace Model
 {
     public class DrawingData
     {
-        Logika.IMovingCircles movingCircles = new Logika.MovingCircles();
+        Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
         int width = 800;
         int height = 300;
-        
+
+        public DrawingData(Logika.MovingCirclesAPI movingCircles = null)
+        {
+            this.movingCircles = movingCircles ?? Logika.MovingCirclesAPI.CreateMovingCircles();   
+        }
+
         public void Start(int n) {
-            movingCircles.RemoveCircles();
             movingCircles.CreateCircles(n);
             movingCircles.StartMoving();
         }

@@ -9,7 +9,7 @@ namespace LogikaTests
         public void TestMethod()
         {
 
-            Logika.IMovingCircles movingCircles = new Logika.MovingCircles();
+            Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
             movingCircles.CreateCircles(5);
 
             Assert.AreEqual(5, movingCircles.Count());

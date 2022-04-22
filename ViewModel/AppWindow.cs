@@ -16,7 +16,8 @@ namespace ViewModel
         public ObservableCollection<CircleDrawing> circleDrawings { get; set; }
         private int circleNumber;
         int sleepTime = 30;
-        bool moving = false;
+        public bool moving { get; set; }
+        public bool notMoving { get; set; }
         int radius = 20;
 
         public AppWindow()
@@ -24,19 +25,22 @@ namespace ViewModel
             this.startCommand = new StartCommand(this);
             this.stopCommand = new StopCommand(this);
             circleDrawings = new ObservableCollection<CircleDrawing>();
+            moving = false;
+            notMoving = true;
         }
 
         void Start()
         {
             drawingData.Start(circleNumber);
             PrepareCircleDrawings();
-            moving = true;
+            ChangeMoving();
             new Thread(DrawingThread).Start();
         }
 
         void Stop()
         {
-            moving = false;
+            ChangeMoving();
+            drawingData.Stop();
         }
 
         void PrepareCircleDrawings()
@@ -71,11 +75,6 @@ namespace ViewModel
             }
         }
 
-        public void PreviewTextInput()
-        {
-
-        }
-
         public int CircleNumber
         {
 
@@ -94,12 +93,21 @@ namespace ViewModel
         public void ButtonClick()
         {
             Start();
+            RaisePropertyChanged(nameof(moving));
+            RaisePropertyChanged(nameof(notMoving));
         }
         public void ButtonStopClick()
         {
             Stop();
+            RaisePropertyChanged(nameof(moving));
+            RaisePropertyChanged(nameof(notMoving));
         }
 
+        void ChangeMoving()
+        {
+            moving = !moving;
+            notMoving = !notMoving;
+        }
 
     }
 }

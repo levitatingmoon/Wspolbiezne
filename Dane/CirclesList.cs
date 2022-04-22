@@ -4,47 +4,47 @@ using System.Text;
 
 namespace Dane
 {
-    public class CirclesList : ICircles
+    public class CirclesList : CirclesAPI
     {
         List<Circle> circles = new List<Circle>();
 
-        public void AddCircle(int x, int y, int radius, int vx, int vy)
+        public override void AddCircle(int x, int y, int radius, int vx, int vy)
         {
             circles.Add(new Circle(x, y, radius, vx, vy));
         }
 
-        public void RemoveCircle(int i)
+        public override void RemoveCircle(int i)
         {
             circles.RemoveAt(i);
         }
 
-        public int Count()
+        public override int Count()
         {
             return circles.Count;
         }
 
-        public int GetX(int i)
+        public override int GetX(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetX();
         }
 
-        public int GetY(int i)
+        public override int GetY(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetY();
         }
 
-        public int GetRadius(int i)
+        public override int GetRadius(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetRadius();
         }
 
-        public void ChangePosition(int i, int x, int y)
+        public override void ChangePosition(int i, int x, int y)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
@@ -52,33 +52,33 @@ namespace Dane
             circles[i].SetY(y);
         }
 
-        public void RemoveAllCircles()
+        public override void RemoveAllCircles()
         {
             circles.Clear();
         }
 
-        public int GetVx(int i)
+        public override int GetVx(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetVx();
         }
 
-        public int GetVy(int i)
+        public override int GetVy(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetVy();
         }
 
-        public void SetVx(int i, int vx)
+        public override void SetVx(int i, int vx)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             circles[i].SetVx(vx);
         }
 
-        public void SetVy(int i, int vy)
+        public override void SetVy(int i, int vy)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Logika
 {
-    public class MovingCircles : IMovingCircles
+    public class MovingCircles : MovingCirclesAPI
     {
-        Dane.ICircles circles = new Dane.CirclesList();
+        Dane.CirclesAPI circles;
         List<Thread> threads = new List<Thread>();
         int radius = 20;
         int width = 800;
@@ -17,12 +17,17 @@ namespace Logika
         int maxVelocity = 20;
         bool moving = false;
 
-        public int Count()
+        public MovingCircles(Dane.CirclesAPI circles = null)
+        {
+            this.circles = circles ?? Dane.CirclesAPI.CreateCircles();
+        }
+
+        public override int Count()
         {
             return circles.Count();
         }
 
-        public void CreateCircles(int n)
+        public override void CreateCircles(int n)
         {
             Random rnd = new Random();
             for (int i = 0; i < n; i++)
@@ -34,32 +39,32 @@ namespace Logika
             }
         }
 
-        public int GetHeight()
+        public override int GetHeight()
         {
             return height;
         }
 
-        public int GetWidth()
+        public override int GetWidth()
         {
             return width;
         }
 
-        public int GetX(int i)
+        public override int GetX(int i)
         {
             return circles.GetX(i);
         }
 
-        public int GetY(int i)
+        public override int GetY(int i)
         {
             return circles.GetY(i);
         }
 
-        public void RemoveCircles()
+        public override void RemoveCircles()
         {
             circles.RemoveAllCircles();
         }
 
-        public void StartMoving()
+        public override void StartMoving()
         {
             
             moving = true;
@@ -72,7 +77,7 @@ namespace Logika
             }
         }
 
-        public void StopMoving()
+        public override void StopMoving()
         {
             moving = false;
             threads.Clear();
