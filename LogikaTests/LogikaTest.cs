@@ -1,3 +1,4 @@
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LogikaTests
@@ -5,11 +6,10 @@ namespace LogikaTests
     [TestClass]
     public class LogikaTest
     {
+        Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
         [TestMethod]
-        public void TestMethod()
+        public void TestCreateRemove()
         {
-
-            Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
             movingCircles.CreateCircles(5);
 
             Assert.AreEqual(5, movingCircles.Count());
@@ -19,6 +19,12 @@ namespace LogikaTests
             movingCircles.RemoveCircles();
 
             Assert.AreEqual(0, movingCircles.Count());
+
+        }
+
+        [TestMethod]
+        public void TestGet()
+        {
             Assert.AreEqual(800, movingCircles.GetWidth());
             Assert.AreEqual(300, movingCircles.GetHeight());
 
