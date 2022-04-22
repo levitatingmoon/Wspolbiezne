@@ -10,6 +10,7 @@ namespace ViewModel
     public class AppWindow
     {
         public StartCommand startCommand { get; set; }
+        public StopCommand stopCommand { get; set; }
         Model.DrawingData drawingData = new Model.DrawingData();
         public ObservableCollection<CircleDrawing> circleDrawings { get; set; }
         int n = 3;
@@ -20,6 +21,7 @@ namespace ViewModel
         public AppWindow()
         {
             this.startCommand = new StartCommand(this);
+            this.stopCommand = new StopCommand(this);
             circleDrawings = new ObservableCollection<CircleDrawing>();
         }
 
@@ -77,6 +79,11 @@ namespace ViewModel
         {
             Start();
         }
+        public void ButtonStopClick()
+        {
+            Stop();
+        }
+
 
     }
 }

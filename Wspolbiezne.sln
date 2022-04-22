@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logika", "Logika\Logika.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{C8E46615-4702-427D-B06D-20613B32598C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaneTests", "DaneTests\DaneTests.csproj", "{AD6554A4-C9AD-45E8-B82D-823B8D8446A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogikaTests", "LogikaTests\LogikaTests.csproj", "{425902EA-43B1-4826-9187-5EFAF235F4E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C8E46615-4702-427D-B06D-20613B32598C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E46615-4702-427D-B06D-20613B32598C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E46615-4702-427D-B06D-20613B32598C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6554A4-C9AD-45E8-B82D-823B8D8446A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6554A4-C9AD-45E8-B82D-823B8D8446A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6554A4-C9AD-45E8-B82D-823B8D8446A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6554A4-C9AD-45E8-B82D-823B8D8446A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{425902EA-43B1-4826-9187-5EFAF235F4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{425902EA-43B1-4826-9187-5EFAF235F4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{425902EA-43B1-4826-9187-5EFAF235F4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{425902EA-43B1-4826-9187-5EFAF235F4E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
