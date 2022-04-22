@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading;
 
 namespace ViewModel
 {
-    public class AppWindow
+    public class AppWindow : PropertyChange
     {
         public StartCommand startCommand { get; set; }
         public StopCommand stopCommand { get; set; }
         Model.DrawingData drawingData = new Model.DrawingData();
         public ObservableCollection<CircleDrawing> circleDrawings { get; set; }
-        int n = 3;
+        private int circleNumber;
         int sleepTime = 30;
         bool moving = false;
         int radius = 20;
@@ -27,7 +28,7 @@ namespace ViewModel
 
         void Start()
         {
-            drawingData.Start(n);
+            drawingData.Start(circleNumber);
             PrepareCircleDrawings();
             moving = true;
             new Thread(DrawingThread).Start();
@@ -73,6 +74,21 @@ namespace ViewModel
         public void PreviewTextInput()
         {
 
+        }
+
+        public int CircleNumber
+        {
+
+            get => circleNumber;
+            set
+            {
+                if (value.Equals(circleNumber))
+                    return;
+                if (value < 0)
+                    value = Math.Abs(value);
+                circleNumber = value;
+                RaisePropertyChanged(nameof(circleNumber));
+            }
         }
 
         public void ButtonClick()
