@@ -79,8 +79,8 @@ namespace Logika
             {
                 if (Math.Abs(newPosx - GetX(i)) < maxDelta && Math.Abs(newPosy - GetY(i)) < maxDelta)
                 {
-                    newPosx = rnd.Next(-width, width);
-                    newPosy = rnd.Next(-height, height);
+                    newPosx = rnd.Next(0, width);
+                    newPosy = rnd.Next(0, height);
                 }
                 Thread.Sleep(sleepTime);
                 x = newPosx - GetX(i);

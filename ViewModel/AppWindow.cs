@@ -7,17 +7,18 @@ namespace ViewModel
 {
     public class AppWindow
     {
-        public StartCommand startCommand;
+        public StartCommand startCommand { get; set; }
         Model.DrawingData drawingData = new Model.DrawingData();
-        ObservableCollection <CircleDrawing> circleDrawings = new ObservableCollection<CircleDrawing>();
+        public ObservableCollection<CircleDrawing> circleDrawings { get; set; }
         int n = 5;
         int sleepTime = 100;
         bool moving = false;
-        int radius = 10;
+        int radius = 20;
 
         public AppWindow()
         {
             this.startCommand = new StartCommand(this);
+            circleDrawings = new ObservableCollection<CircleDrawing>();
         }
 
         void Start()
@@ -50,9 +51,10 @@ namespace ViewModel
             List<int> ylist = drawingData.GetY();
             for (int i = 0; i < circleDrawings.Count; i++)
             {
-                circleDrawings[i].SetX(xlist[i]);
-                circleDrawings[i].SetY(ylist[i]);
+                circleDrawings[i].X = xlist[i];
+                circleDrawings[i].Y = ylist[i];
             }
+            
         }
 
         void DrawingThread()
@@ -71,7 +73,7 @@ namespace ViewModel
 
         public void ButtonClick()
         {
-
+            Start();
         }
 
     }
