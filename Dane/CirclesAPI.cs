@@ -6,7 +6,7 @@ namespace Dane
 {
     public abstract class CirclesAPI
     {
-        public abstract void AddCircle(int x, int y, int radius, int vx, int vy);
+        public abstract void AddCircle(int x, int y, int radius, int vx, int vy, int mass);
         public abstract void RemoveCircle(int i);
         public abstract void RemoveAllCircles();
         public abstract int Count();
@@ -15,6 +15,7 @@ namespace Dane
         public abstract int GetRadius(int i);
         public abstract int GetVx(int i);
         public abstract int GetVy(int i);
+        public abstract int GetMass(int i);
         public abstract void SetVx(int i, int vx);
         public abstract void SetVy(int i, int vy);
         public abstract void ChangePosition(int i, int x, int y);

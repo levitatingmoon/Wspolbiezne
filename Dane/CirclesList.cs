@@ -8,9 +8,9 @@ namespace Dane
     {
         List<Circle> circles = new List<Circle>();
 
-        public override void AddCircle(int x, int y, int radius, int vx, int vy)
+        public override void AddCircle(int x, int y, int radius, int vx, int vy, int mass)
         {
-            circles.Add(new Circle(x, y, radius, vx, vy));
+            circles.Add(new Circle(x, y, radius, vx, vy, mass));
         }
 
         public override void RemoveCircle(int i)
@@ -69,6 +69,13 @@ namespace Dane
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetVy();
+        }
+
+        public override int GetMass(int i)
+        {
+            if (i < 0) i = 0;
+            if (i >= circles.Count) i = circles.Count - 1;
+            return circles[i].GetMass();
         }
 
         public override void SetVx(int i, int vx)
