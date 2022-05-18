@@ -8,7 +8,7 @@ namespace Dane
     {
         List<Circle> circles = new List<Circle>();
 
-        public override void AddCircle(int x, int y, int radius, int vx, int vy, int mass)
+        public override void AddCircle(double x, double y, int radius, double vx, double vy, int mass)
         {
             circles.Add(new Circle(x, y, radius, vx, vy, mass));
         }
@@ -23,14 +23,14 @@ namespace Dane
             return circles.Count;
         }
 
-        public override int GetX(int i)
+        public override double GetX(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetX();
         }
 
-        public override int GetY(int i)
+        public override double GetY(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
@@ -44,7 +44,7 @@ namespace Dane
             return circles[i].GetRadius();
         }
 
-        public override void ChangePosition(int i, int x, int y)
+        public override void ChangePosition(int i, double x, double y)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
@@ -57,14 +57,14 @@ namespace Dane
             circles.Clear();
         }
 
-        public override int GetVx(int i)
+        public override double GetVx(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             return circles[i].GetVx();
         }
 
-        public override int GetVy(int i)
+        public override double GetVy(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
@@ -78,14 +78,14 @@ namespace Dane
             return circles[i].GetMass();
         }
 
-        public override void SetVx(int i, int vx)
+        public override void SetVx(int i, double vx)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             circles[i].SetVx(vx);
         }
 
-        public override void SetVy(int i, int vy)
+        public override void SetVy(int i, double vy)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
