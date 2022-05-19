@@ -10,8 +10,8 @@ namespace DaneTests
         [TestMethod]
         public void TestAddRemove()
         {
-            circles.AddCircle(10, 10, 10, 5, 5);
-            circles.AddCircle(20, 20, 20, 10, 10);
+            circles.AddCircle(10, 10, 10, 5, 5, 5);
+            circles.AddCircle(20, 20, 20, 10, 10, 10);
 
             Assert.AreEqual(circles.Count(), 2);
 
@@ -28,8 +28,8 @@ namespace DaneTests
         [TestMethod]
         public void TestGetSet()
         {
-            circles.AddCircle(10, 10, 10, 5, 5);
-            circles.AddCircle(20, 20, 20, 10, 10);
+            circles.AddCircle(10, 10, 10, 5, 5, 5);
+            circles.AddCircle(20, 20, 20, 10, 10, 10);
 
             Assert.AreEqual(circles.GetX(0), 10);
             Assert.AreEqual(circles.GetY(0), 10);
@@ -41,13 +41,15 @@ namespace DaneTests
             Assert.AreEqual(circles.GetVy(0), 50);
 
             Assert.AreEqual(circles.GetRadius(0), 10);
+
+            Assert.AreEqual(circles.GetMass(0), 5);
         }
 
         [TestMethod]
         public void TestChangePosition()
         {
-            circles.AddCircle(10, 10, 10, 5, 5);
-            circles.AddCircle(20, 20, 20, 10, 10);
+            circles.AddCircle(10, 10, 10, 5, 5, 5);
+            circles.AddCircle(20, 20, 20, 10, 10, 10);
 
             circles.ChangePosition(1, 30, 40);
 

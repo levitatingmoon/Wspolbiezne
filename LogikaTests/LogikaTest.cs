@@ -6,7 +6,11 @@ namespace LogikaTests
     [TestClass]
     public class LogikaTest
     {
-        Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
+        //Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles();
+
+        static Dane.CirclesList circles = new Dane.CirclesList();
+        Logika.MovingCirclesAPI movingCircles = new Logika.MovingCircles(circles);
+
         [TestMethod]
         public void TestCreateRemove()
         {
