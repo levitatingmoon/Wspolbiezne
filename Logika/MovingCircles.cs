@@ -27,6 +27,8 @@ namespace Logika
         public MovingCircles(Dane.CirclesAPI circles = null)
         {
             this.circles = circles ?? Dane.CirclesAPI.CreateCircles();
+            width = this.circles.GetWidth();
+            height = this.circles.GetHeight();
         }
 
         public override int Count()
@@ -115,8 +117,6 @@ namespace Logika
 
         private void MoveCircle(int i)
         {
-            //double oldPosx = circles.GetX(i);
-            //double oldPosy = circles.GetY(i);
 
             while (true)
             {
@@ -180,45 +180,6 @@ namespace Logika
 
         private void Collision(int circle1, int circle2)
         {
-            /*
-            double vxDiff = circles.GetVx(circle1) - circles.GetVx(circle2);
-            double vyDiff = circles.GetVy(circle1) - circles.GetVy(circle2);
-            double xDist = circles.GetX(circle2) - circles.GetX(circle1);
-            double yDist = circles.GetY(circle2) - circles.GetY(circle1);
-
-            double x1 = circles.GetX(circle1);
-            double x2 = circles.GetX(circle2);
-            double y1 = circles.GetY(circle1);
-            double y2 = circles.GetY(circle2);
-            double d;
-
-
-            if (vxDiff * xDist + vyDiff * yDist >= 0)
-            {
-                double angle = -Math.Atan2(yDist, xDist);
-                int m1 = circles.GetMass(circle1);
-                int m2 = circles.GetMass(circle2);
-
-                double u1x = circles.GetVx(circle1);
-                double u1y = circles.GetVy(circle1);
-                Rotate(ref u1x, ref u1y, angle);
-                double u2x = circles.GetVx(circle2);
-                double u2y = circles.GetVy(circle2);
-                Rotate(ref u2x, ref u2y, angle);
-
-                double v1x = u1x * (m1 - m2) / (m1 + m2) + u2x * 2 * m2 / (m1 + m2);
-                double v1y = u1y;
-                double v2x = u2x * (m2 - m1) / (m1 + m2) + u1x * 2 * m1 / (m1 + m2);
-                double v2y = u2y;
-
-                Rotate(ref v1x, ref v1y, -angle);
-                Rotate(ref v2x, ref v2y, -angle);
-
-                circles.SetVx(circle1, v1x);
-                circles.SetVy(circle1, v1y);
-                circles.SetVx(circle2, v2x);
-                circles.SetVy(circle2, v2y);
-            }*/
             
             Debug.WriteLine("Hit");
             
@@ -237,29 +198,12 @@ namespace Logika
 
             Debug.WriteLine(vx1+" "+vy1);
             Debug.WriteLine(vx2 + " " + vy2);
-            /*
-            if (DoCirclesOverlap(x1, y1, x2, y2, radius, radius))
-            {
-                
-                double overlap = 0.5 * (d - 2 * radius);
-                circles.ChangePosition(circle1, (int)(x1 - overlap * (x1 - x2) / d), (int)(y1 - overlap * (y1 - y2) / d));
-                circles.ChangePosition(circle2, (int)(x2 + overlap * (x1 - x2) / d), (int)(y2 + overlap * (y1 - y2) / d));
-            }*/
             
             x1 = circles.GetX(circle1);
             x2 = circles.GetX(circle2);
             y1 = circles.GetY(circle1);
             y2 = circles.GetY(circle2);
             d = Distance(x1, y1, x2, y2);
-            /*
-            double nx = (x2 - x1) / d;
-            double ny = (y2 - y1) / d;
-            double p = 2 * (vx1 * nx + vy1 * ny - vx2 * nx - vy2 * ny) / (circles.GetMass(circle1) + circles.GetMass(circle2));
-            circles.SetVx(circle1, (int)(vx1 - p * m1 * nx));
-            circles.SetVy(circle1, (int)(vy1 - p * m1 * ny));
-            circles.SetVx(circle2, (int)(vx2 + p * m2 * nx));
-            circles.SetVy(circle2, (int)(vy2 + p * m2 * ny));
-            */
             
             d = Distance(x1, y1, x2, y2);
             double vxDiff = circles.GetVx(circle1) - circles.GetVx(circle2);
@@ -268,14 +212,6 @@ namespace Logika
             double yDist = circles.GetY(circle2) - circles.GetY(circle1);
             if (vxDiff * xDist + vyDiff * yDist >= 0)
             {
-                 /*
-                 //znajdź minimalny dystans do przesunięcia - minimal translation distance
-                 double mtdx = (x1 - x2) * ((2 * radius - d) / d);
-                 double mtdy = (y1 - y2) * ((2 * radius - d) / d);
-                 //przesunięcie
-                 circles.ChangePosition(circle1, (int)(x1 + (mtdx / 2)), (int)(y1 + (mtdy / 2)));
-                 circles.ChangePosition(circle2, (int)(x2 - (mtdx / 2)), (int)(y2 - (mtdy / 2)));
-                */
                 
                 if (DoCirclesOverlap(x1, y1, x2, y2, radius, radius))
                 {
@@ -320,7 +256,6 @@ namespace Logika
             }
 
         }
-
 
 
          private bool DoCirclesOverlap(double x1, double y1, double x2, double y2, double r1, double r2)

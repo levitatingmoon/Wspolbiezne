@@ -19,6 +19,8 @@ namespace Dane
         public abstract void SetVx(int i, double vx);
         public abstract void SetVy(int i, double vy);
         public abstract void ChangePosition(int i, double x, double y);
+        public abstract int GetWidth();
+        public abstract int GetHeight();
 
         public static CirclesAPI CreateCircles()
         {

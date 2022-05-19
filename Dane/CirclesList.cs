@@ -7,6 +7,8 @@ namespace Dane
     public class CirclesList : CirclesAPI
     {
         List<Circle> circles = new List<Circle>();
+        int width = 800;
+        int height = 300;
 
         public override void AddCircle(double x, double y, int radius, double vx, double vy, int mass)
         {
@@ -90,6 +92,16 @@ namespace Dane
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
             circles[i].SetVy(vy);
+        }
+
+        public override int GetWidth()
+        {
+            return width;
+        }
+
+        public override int GetHeight()
+        {
+            return height;
         }
     }
 }
