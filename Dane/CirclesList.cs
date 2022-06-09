@@ -30,29 +30,29 @@ namespace Dane
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetX();
+            return circles[i].x;
         }
 
         public override double GetY(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetY();
+            return circles[i].y;
         }
 
         public override int GetRadius(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetRadius();
+            return circles[i].radius;
         }
 
         public override void ChangePosition(int i, double x, double y)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            circles[i].SetX(x);
-            circles[i].SetY(y);
+            circles[i].x = x;
+            circles[i].y = y;
         }
 
         public override void RemoveAllCircles()
@@ -64,35 +64,35 @@ namespace Dane
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetVx();
+            return circles[i].vx;
         }
 
         public override double GetVy(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetVy();
+            return circles[i].vy;
         }
 
         public override int GetMass(int i)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            return circles[i].GetMass();
+            return circles[i].mass;
         }
 
         public override void SetVx(int i, double vx)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            circles[i].SetVx(vx);
+            circles[i].vx = vx;
         }
 
         public override void SetVy(int i, double vy)
         {
             if (i < 0) i = 0;
             if (i >= circles.Count) i = circles.Count - 1;
-            circles[i].SetVy(vy);
+            circles[i].vy = vy;
         }
 
         public override int GetWidth()
