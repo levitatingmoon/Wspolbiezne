@@ -9,6 +9,7 @@ namespace Dane
         List<Circle> circles = new List<Circle>();
         int width = 800;
         int height = 300;
+        Logger logger;
 
         public override void AddCircle(double x, double y, int radius, double vx, double vy, int mass)
         {
@@ -102,6 +103,16 @@ namespace Dane
         public override int GetHeight()
         {
             return height;
+        }
+
+        public override void StartLogger()
+        {
+            this.logger = new Logger(circles);
+        }
+
+        public override void StopLogger()
+        {
+            logger.stop();
         }
     }
 }

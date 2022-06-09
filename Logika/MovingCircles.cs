@@ -62,6 +62,7 @@ namespace Logika
                 oldPosx.Add(x);
                 oldPosy.Add(y);
             }
+            circles.StartLogger();
         }
 
         private double Distance(double x1, double y1, double x2, double y2)
@@ -113,6 +114,7 @@ namespace Logika
         {
             moving = false;
             threads.Clear();
+            circles.StopLogger();
         }
 
         private void MoveCircle(int i)
@@ -152,22 +154,25 @@ namespace Logika
 
         private void CheckCollisions(int i)
         {
-            lock (locker)
-            {
+            //lock (locker)
+            //{
                 for (int j = 0; j < circles.Count(); j++)
                 {
                     if (j == i) continue;
 
                     if (Distance(circles.GetX(i), circles.GetY(i), circles.GetX(j), circles.GetY(j)) - radius * 2 < 0)
                     {
-                        collidedCircles[j] = true;
-                        circles.ChangePosition(i, oldPosx[i], oldPosy[i]);
-                        circles.ChangePosition(j, oldPosx[j], oldPosy[j]);
-                        Collision(i, j);
-                        collidedCircles[j] = false;
+                        lock (locker)
+                        {
+                            collidedCircles[j] = true;
+                            circles.ChangePosition(i, oldPosx[i], oldPosy[i]);
+                            circles.ChangePosition(j, oldPosx[j], oldPosy[j]);
+                            Collision(i, j);
+                            collidedCircles[j] = false;
+                        }
                     }
                 }
-            }
+            //}
         }
 
         private void Rotate(ref double vx, ref double vy, double angle)

@@ -21,6 +21,8 @@ namespace Dane
         public abstract void ChangePosition(int i, double x, double y);
         public abstract int GetWidth();
         public abstract int GetHeight();
+        public abstract void StartLogger();
+        public abstract void StopLogger();
 
         public static CirclesAPI CreateCircles()
         {
